@@ -1,0 +1,7 @@
+{
+  "extends": "xo-space",
+  "rules": {
+    "prefer-reflect": [0],
+    "quote-props": [2, "as-needed"]
+  }
+}

@@ -2,6 +2,7 @@
   "extends": "xo-space",
   "rules": {
     "prefer-reflect": [0],
-    "quote-props": [2, "as-needed"]
+    "quote-props": [2, "as-needed"],
+    "no-prototype-builtins": [0]
   }
 }

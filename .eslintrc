@@ -1,8 +1,28 @@
 {
-  "extends": "xo-space",
+  "extends": "xo-space/esnext",
   "rules": {
+    "camelcase": ["error", {"properties": "never"}],
+    "new-cap": [1,  {"capIsNew": false}],
+    "no-labels": [0],
+    "no-useless-escape": [0],
+    "max-params": ["error", 8],
+    "max-depth": ["error", 6],
+    "max-len": ["error", {
+      "code": 100,
+      "tabWidth": 2,
+      "ignoreTemplateLiterals": true,
+      "ignoreComments": true
+    }],
+    "indent": ["error", 2, {"SwitchCase": 1, "MemberExpression": "off"}],
+    "no-nested-ternary": [0],
     "prefer-reflect": [0],
     "quote-props": [2, "as-needed"],
-    "no-prototype-builtins": [0]
+    "no-prototype-builtins": [0],
+    "no-eq-null": [0],
+    "eqeqeq": ["error", "smart"]
+  },
+  "env": {
+    "es6": true,
+    "node": true
   }
 }

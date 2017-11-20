@@ -1,21 +1,23 @@
-var async = require('async');
-var should = require('chai').should();
-var mongoose = require('mongoose');
-var getModel = require('../lib/model');
-var connection;
-var jobModel;
+/* eslint-env node, mocha */
+const should = require('chai').should();
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+const getModel = require('../lib/model');
+const mongoHost = process.env.MONGO_HOST || '127.0.0.1';
+let connection;
+let JobModel;
 
-before(function (done) {
-  connection = mongoose.createConnection('mongodb://127.0.0.1/monq_test');
+before((done) => {
+  connection = mongoose.createConnection(`mongodb://${mongoHost}/monq_test`);
   connection.on('error', console.error.bind(console));
-  connection.once('open', function () {
-    jobModel = getModel(connection, 'Job');
+  connection.once('open', () => {
+    JobModel = getModel(connection, 'Job');
     done();
   });
 });
 
-after(function (done) {
-  connection.db.dropDatabase(function (err) {
+after((done) => {
+  connection.db.dropDatabase((err) => {
     if (err) {
       return done(err);
     }
@@ -23,30 +25,29 @@ after(function (done) {
   });
 });
 
-afterEach(function (done) {
-  jobModel.collection.drop(function () {
+afterEach((done) => {
+  JobModel.collection.drop(() => {
     delete connection.models.Job;
     done();
   });
 });
 
-describe('jobModel', function () {
-
-  it('should have some props', function () {
-    jobModel.should.have.property('collection');
-    jobModel.should.have.property('schema');
-    jobModel.should.have.property('db');
-    jobModel.should.have.property('model');
-    jobModel.should.have.property('modelName');
-    jobModel.should.have.property('base');
+describe('JobModel', () => {
+  it('should have some props', () => {
+    JobModel.should.have.property('collection');
+    JobModel.should.have.property('schema');
+    JobModel.should.have.property('db');
+    JobModel.should.have.property('model');
+    JobModel.should.have.property('modelName');
+    JobModel.should.have.property('base');
   });
 
-  it('should sucess create record', function (done) {
-    var job = new jobModel({
+  it('should sucess create record', (done) => {
+    const job = new JobModel({
       queue: 'queue',
       name: 'test',
       status: 'queued',
-      enqueued: new Date
+      enqueued: new Date()
     });
 
     job.save(assert);

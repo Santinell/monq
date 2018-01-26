@@ -1,6 +1,6 @@
 {
   "name": "monq",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "MongoDB-backed job queue for Node.js",
   "homepage": "http://github.com/scttnlsn/monq",
   "author": "Scott Nelson <scott@scttnlsn.com>",
@@ -17,9 +17,12 @@
     "chai": "^4.1.2",
     "eslint": "^4.11.0",
     "eslint-config-xo-space": "^0.17.0",
-    "mocha": "^4.0.1"
+    "mocha": "^5.0.0"
   },
   "peerDependencies": {
-    "mongoose": "^4.13.4"
+    "mongoose": "^5.0.0"
+  },
+  "dependencies": {
+    "mongoose": "^5.0.0"
   }
 }
